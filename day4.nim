@@ -6,9 +6,9 @@ func solve(lines: openArray[string]): (int, int) =
   for line in lines:
     if line.len == 0:
       break
-    let ranges = line.split(',')
-    let first = ranges[0].split('-')
-    let second = ranges[1].split('-')
+    let pairs = line.split(',')
+    let first = pairs[0].split('-')
+    let second = pairs[1].split('-')
     var first_sections: set[uint16]
     var second_sections: set[uint16]
     for i in first[0].parseUInt()..first[1].parseUInt():
