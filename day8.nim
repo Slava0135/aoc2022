@@ -1,4 +1,4 @@
-import std/[sequtils, strutils, algorithm]
+import std/[sequtils, strutils]
 
 var trees: seq[seq[int]]
 
