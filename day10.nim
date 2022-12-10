@@ -30,20 +30,26 @@ proc partTwo(lines: openArray[string]): string =
   for line in lines:
     if line.len == 0 or cycle > 240:
       break
-    if cycle mod 40 - sprite_pos in -1..1:
-      crt[(cycle-1) div 40].add "#"
-    else:
-      crt[(cycle-1) div 40].add "." 
-    cycle += 1
-    let frags = line.splitWhitespace()
-    if frags[0] == "addx":
-      let val = frags[1].parseInt()
-      sprite_pos += val
-      if cycle mod 40 - sprite_pos in -1..1:
+    if line == "noop":
+      if (cycle-1) mod 40 - sprite_pos in -1..1:
         crt[(cycle-1) div 40].add "#"
       else:
         crt[(cycle-1) div 40].add "." 
       cycle += 1
+    else:
+      let frags = line.splitWhitespace()
+      let val = frags[1].parseInt()
+      if (cycle-1) mod 40 - sprite_pos in -1..1:
+        crt[(cycle-1) div 40].add "#"
+      else:
+        crt[(cycle-1) div 40].add "." 
+      cycle += 1
+      if (cycle-1) mod 40 - sprite_pos in -1..1:
+        crt[(cycle-1) div 40].add "#"
+      else:
+        crt[(cycle-1) div 40].add "."
+      cycle += 1
+      sprite_pos += val
   return crt.join("\n") 
 
 
